@@ -22,7 +22,7 @@ public :
 	void SetExam(string name, string dateStartExam, int hours, int rating);
 	string get(int x);
 	void Show() override;
-
+	//update
 
 	
 

@@ -11,7 +11,7 @@ dateStartExam(dateStartExam),
 hours(hours),
 rating(rating)
 {}
-Exam::Exam(  string position, 
+Exam::Exam(TeacherPosition position, 
 	string lastname, string firstname,
 	string name, string dateStartExam, int hours, int rating):Teacher::Teacher(position,lastname,firstname),
 	 
@@ -40,8 +40,7 @@ void Exam::SetExam(string name, string dateStartExam, int hours, int rating)
 }
 string Exam::get(int x) {
 	
-	while (x <=4)
-	{
+	
 		switch (x)
 		{
 		case 1:
@@ -57,11 +56,6 @@ string Exam::get(int x) {
 			return "\nНазва предмету " + name + "\nДата проведення " + dateStartExam+"\nКількість годин на предмет " + to_string(hours)+"\nОцінка "+ to_string(rating);
 			break;
 		}
-	}
-	return "";
-
-
-
 }
 void Exam::Show()
 {

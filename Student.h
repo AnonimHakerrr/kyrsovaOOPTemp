@@ -16,8 +16,7 @@ public:
 	virtual ~Student();
 	void SetStudent(string nomerGrup, string lastname, string firstname);
 	string GetStudent();
-	void ShowRecordBookStudent();
-	void SetRecordBookStudent(Exam exam);
+ 	void SetRecordBookStudent(Exam exam);
 	void Show() override;
 	Student& operator=(const Student& other);
 	Student& operator=(Student&& other);

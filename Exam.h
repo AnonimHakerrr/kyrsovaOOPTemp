@@ -16,7 +16,7 @@ private:
 public :
 	Exam(string name, string dateStartExam, int hours, int rating);
 	Exam(const Teacher& t,string name, string dateStartExam, int hours, int rating);
-	Exam (string position, string lastname,string firstname ,string name, string dateStartExam, int hours, int rating);
+	Exam (TeacherPosition position, string lastname,string firstname ,string name, string dateStartExam, int hours, int rating);
 	Exam();
 	~Exam();
 	void SetExam(string name, string dateStartExam, int hours, int rating);

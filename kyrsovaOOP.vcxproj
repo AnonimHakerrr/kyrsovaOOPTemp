@@ -139,6 +139,7 @@
     <ClCompile Include="RecordBook.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="Teacher.cpp" />
+    <ClCompile Include="TeacherPosition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Exam.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="RecordBook.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Teacher.h" />
+    <ClInclude Include="TeacherPosition.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,7 +13,7 @@ this->nomerGrup = nomerGrup;
 Student::Student(const Student& other):Person(other), nomerGrup(other.nomerGrup),recordBook(other.recordBook) {
     cout << "Викликано конструктор копіювання для Student" << endl;
 }
-Student::Student(Student&& other):Person(move(other)), nomerGrup(move(other.nomerGrup)), recordBook(move(other.recordBook)) {
+Student::Student(Student&& other):Person(move(other)), nomerGrup(move(other.nomerGrup)), recordBook(other.recordBook) {
     cout << "Викликано конструктор переміщення для Student" << endl;
 }
 Student::Student():Person() {};

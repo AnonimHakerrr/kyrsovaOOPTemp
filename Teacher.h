@@ -1,17 +1,18 @@
 #pragma once
 #include "Person.h"
+#include "TeacherPosition.h"
 class Teacher :public Person
 {
 private:
 	//enume змінити 
-	string position;
+	TeacherPosition position;
 public:
-	Teacher(string position, string lastname, string firstname);
+	Teacher(TeacherPosition position, string lastname, string firstname);
 	Teacher(const Teacher& other);
 	Teacher(Teacher&& other);
 	 Teacher();
 	virtual ~Teacher();
-	void SetTeacher(string position, string lastname, string firstname);
+	void SetTeacher(TeacherPosition position, string lastname, string firstname);
 	string GetTeacher();
 	void Show() override;
 	Teacher& operator=(const Teacher& other);

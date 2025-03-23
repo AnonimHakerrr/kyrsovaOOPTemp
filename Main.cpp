@@ -15,7 +15,7 @@ using namespace  std;
 
 int main() {
 	setlocale(LC_CTYPE, "ukr");
-	vector<Student> stud;
+	/*vector<Student> stud;
 	vector<Teacher> tech;
 stud.push_back(	Student ("ipzs-11", "Soltys", "Oleksandr"));
 stud.push_back(Student ("ipzs-11", "Возьний", "Святослав"));
@@ -50,7 +50,7 @@ tech.push_back(Teacher ("Викладач", "Крук", "Яна"));
 	File file("C:/Users/oleks/Desktop/test2.txt");
 
 	for (Iterator it = begin; it != end; ++it) {
-		(*it).S+how();
+		(*it).Show();
 		file.WriteFile(*it);
 	}
 	cout << "\nSize : " << rec.GetSize();
@@ -67,6 +67,14 @@ tech.push_back(Teacher ("Викладач", "Крук", "Яна"));
 		(*it).Show();
 	 
 	}
-	cout << "\nSize : " << rec.GetSize();
+	cout << "\nSize : " << rec.GetSize();*/
+
+
+	Student stud;
+	cin>>stud;
+	/*stud->SetRecordBookStudent(Exam(Teacher("Викладач", "Свіник", "Ярослав"), "ТЙЙПМС", "03.12.2024", 15, 5));
+ 
+	stud->Show();*/
+
 	return 0;
 }

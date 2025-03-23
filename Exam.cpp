@@ -5,25 +5,24 @@
 
 Exam::Exam(string name, string dateStartExam, int hours, int rating):
 Teacher::Teacher(),
-Student::Student(),
+ 
 name(name),
 dateStartExam(dateStartExam),
 hours(hours),
 rating(rating)
 {}
-Exam::Exam(string nomerGrup, string position, string lastname, string firstname, 
-	string lastnameStud, string firstnameStud,
+Exam::Exam(  string position, 
+	string lastname, string firstname,
 	string name, string dateStartExam, int hours, int rating):Teacher::Teacher(position,lastname,firstname),
-	Student::Student(nomerGrup, lastnameStud, firstnameStud),
+	 
 	name(name),
 	dateStartExam(dateStartExam),
 	hours(hours),
 	rating(rating)
 {}
-Exam::Exam(const Student& s,const Teacher& t, string name, string dateStartExam, int hours, int rating)
+Exam::Exam( const Teacher& t, string name, string dateStartExam, int hours, int rating)
 :Teacher(t),
-Student(s),
-	name(name),
+ 	name(name),
 	dateStartExam(dateStartExam),
 	hours(hours),
 	rating(rating){}
@@ -66,5 +65,5 @@ string Exam::get(int x) {
 }
 void Exam::Show()
 {
-	cout << get(0) << "\n" << GetStudent() << GetTeacher() << endl;
+	cout << get(0) << "\n"   << GetTeacher() << endl;
 }

@@ -16,7 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Task.txt" />
-    <Text Include="Text.txt">
+    <Text Include="TaskUpdate.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

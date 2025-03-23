@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="Task.txt" />
-    <Text Include="Text.txt" />
+    <Text Include="TaskUpdate.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Exam.cpp" />

@@ -1,12 +1,12 @@
 #pragma once
-#include "Student.h"
+ 
 #include "Teacher.h"
 #include <string>
 #include <iostream>
 
  
 using namespace std; 
-class Exam :public Teacher, public Student
+class Exam :public Teacher
 {
 private:
 	string name, dateStartExam;
@@ -15,8 +15,8 @@ private:
 
 public :
 	Exam(string name, string dateStartExam, int hours, int rating);
-	Exam(const Student& s, const Teacher& t,string name, string dateStartExam, int hours, int rating);
-	Exam(string nomerGrup,string position, string lastnameStud, string firstnameStud, string lastname,string firstname ,string name, string dateStartExam, int hours, int rating);
+	Exam(const Teacher& t,string name, string dateStartExam, int hours, int rating);
+	Exam (string position, string lastname,string firstname ,string name, string dateStartExam, int hours, int rating);
 	Exam();
 	~Exam();
 	void SetExam(string name, string dateStartExam, int hours, int rating);

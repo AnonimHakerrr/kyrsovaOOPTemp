@@ -22,6 +22,8 @@ public :
 	void SetExam(string name, string dateStartExam, int hours, int rating);
 	//оцінювання через виключення 
 	void Evaluation(int rating);
+	string getNameExam();
 	//string get(int x); -> переробити
 	void Show() override;
+	friend istream& operator>>(istream& is, Exam& ex);
 };

@@ -7,7 +7,7 @@ class Student :public Person
 {
 private :
 	string nomerGrup;
-	RecordBook* recordBook;
+	RecordBook* recordBook  ;
 public: 
 	Student(string nomerGrup, string lastname, string firstname,int maxsize);
 	Student(const Student& other);
@@ -17,12 +17,12 @@ public:
 	void SetStudent(string nomerGrup, string lastname, string firstname);
 	string GetStudent();
  	void SetRecordBookStudent(Exam exam);
+	RecordBook getRecordBookStudent();
 	void Show() override;
 	Student& operator=(const Student& other);
 	Student& operator=(Student&& other);
-
+    bool operator==(const Student& st) ;
 	friend ostream& operator<<(ostream& os, const Student& Student);
-
 	friend istream& operator>>(istream& is, Student& Student);
 
 

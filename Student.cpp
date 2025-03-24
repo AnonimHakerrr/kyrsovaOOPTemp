@@ -16,7 +16,9 @@ Student::Student(const Student& other):Person(other), nomerGrup(other.nomerGrup)
 Student::Student(Student&& other):Person(move(other)), nomerGrup(move(other.nomerGrup)), recordBook(other.recordBook) {
     cout << "Викликано конструктор переміщення для Student" << endl;
 }
-Student::Student():Person() {};
+Student::Student():Person() {
+    this->recordBook = new RecordBook(5);
+};
 Student::~Student() {}
 void Student::SetStudent(string nomerGrup, string lastname, string firstname)
 {
@@ -31,6 +33,10 @@ string Student::GetStudent() {
 }
 void Student::SetRecordBookStudent(Exam exam ) {
     recordBook->Add(exam);
+}
+RecordBook Student::getRecordBookStudent()
+{
+    return *recordBook;
 }
 void Student::Show() {
     
@@ -56,7 +62,11 @@ Student& Student::operator=(Student&& other) {
     }
     return *this;
 }
-
+bool Student::operator==(const Student& st) 
+{
+ 
+    return Person::operator==(st) && (nomerGrup == st.nomerGrup);
+}
 ostream& operator<<(ostream& os,Student& stud) {
     os << stud.GetStudent();
     return os;

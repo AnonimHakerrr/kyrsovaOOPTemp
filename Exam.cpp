@@ -45,6 +45,12 @@ void Exam::SetExam(string name, string dateStartExam, int hours, int rating=0)
 	this->rating = rating;
 
 }
+
+string Exam::getNameExam()
+{
+	return name;
+
+}
 //string Exam::get(int x)
 //{	
 //		switch (x)
@@ -66,4 +72,22 @@ void Exam::SetExam(string name, string dateStartExam, int hours, int rating=0)
 void Exam::Show()
 {
 	cout << "\nНазва предмету " + name + "\nДата проведення " + dateStartExam + "\nКількість годин на предмет " + to_string(hours) + "\nОцінка " + to_string(rating) << "\n"   << GetTeacher() << endl;
+}
+
+istream& operator>>(istream& is, Exam& ex)
+{
+	cout << "Ведіть назву предмета :";
+	is >> ex.name;
+	cout << "Ведіть дату початку:";
+	is >> ex.dateStartExam;
+	cout << "Ведіть кількість відведених годин:";
+	is >> ex.hours;
+	cout << "Ведіть кількість балів :";
+	is >> ex.rating;
+	is >> static_cast<Teacher&>(ex);
+
+
+	return is;
+
+
 }

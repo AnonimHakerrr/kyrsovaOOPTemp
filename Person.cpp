@@ -18,6 +18,11 @@ string Person::GetPerson() {
 void Person::Show() {
     cout << "Прізвище: " << lastname << ", Ім'я: " << firstname << endl;
 }
+bool Person::operator ==(const Person& other)
+{
+    return (lastname == other.lastname && firstname == other.firstname);
+
+}
 ostream& operator<<(ostream& os, const Person& person) {
     os << "Прізвище: " << person.lastname << ", Ім'я: " << person.firstname;
     return os;

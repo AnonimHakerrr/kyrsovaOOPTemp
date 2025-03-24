@@ -6,8 +6,10 @@ enum class TeacherPosition
 {
 	Assistant,
 	Lecturer,
-	Director,
-};
+	SeniorLecturer,
+	Docent,
+	Professor,
+}; 
 
 string positionToString(TeacherPosition techpos);
 

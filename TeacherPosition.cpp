@@ -3,18 +3,21 @@
 
 
 string  positionToString(TeacherPosition techpos) 
-{
+{//Асистент  старший викладач доцент Професор
 	switch (techpos)
 	{	
 	case TeacherPosition::Assistant:
 		return "Асистент";
- 
 	case TeacherPosition::Lecturer:
 		return "Викладач";
- 	case TeacherPosition::Director:
-		return "Директор";
+ 	case TeacherPosition::SeniorLecturer:
+		return "Старший викладач";
+	case TeacherPosition::Docent:
+		return "Доцент";
+	case TeacherPosition::Professor:
+		return "Професор";
  	default:
-		return "Викладач";
+		return "Асистент";
 
 	}
 }
@@ -23,7 +26,11 @@ TeacherPosition positionToEnum(string techpos)
 	map<string, TeacherPosition> position = {
 		{"Assistant",TeacherPosition::Assistant},
 		{"Lecturer",TeacherPosition::Lecturer},
-		{"Director",TeacherPosition::Director} };
+		{"SeniorLecturer",TeacherPosition::SeniorLecturer} ,
+		{"Docent", TeacherPosition::Docent},
+		{"Professor",TeacherPosition::Professor},
+	};
 	auto pos = position.find(techpos);
-	return (pos!=position.end()) ? pos->second : TeacherPosition::Lecturer;
+
+return (pos!=position.end()) ? pos->second : TeacherPosition::Assistant;
 }

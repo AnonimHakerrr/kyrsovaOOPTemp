@@ -68,13 +68,12 @@ tech.push_back(Teacher ("Викладач", "Крук", "Яна"));
 	 
 	}
 	cout << "\nSize : " << rec.GetSize();*/
+Student* stud=new Student("ipzs-11", "Ткачук", "Віталій",5);
 
-	Teacher tech;
-	cin >> tech;
-	Student* stud=new Student("ipzs-11", "Ткачук", "Віталій",5);
+	stud->SetRecordBookStudent(Exam(Teacher(positionToEnum("Professor"), "Свіник", "Ярослав"), "ТЙЙПМС", "03.12.2024", 15, 5));
+	stud->SetRecordBookStudent(Exam(Teacher(positionToEnum("Professor"), "Свіник", "Ярослав"), "ТЙЙПМС", "03.12.2024", 15, 5));
+	stud->SetRecordBookStudent(Exam(Teacher(positionToEnum("Professor"), "Свіник", "Ярослав"), "ТЙЙПМС", "03.12.2024", 15, 5));
 
-	stud->SetRecordBookStudent(Exam(Teacher(positionToEnum("Викладач"), "Свіник", "Ярослав"), "ТЙЙПМС", "03.12.2024", 15, 5));
- 
 	stud->Show();
 
 	return 0;

@@ -4,7 +4,7 @@
 class Teacher :public Person
 {
 private:
-	//enume змінити 
+	
 	TeacherPosition position;
 public:
 	Teacher(TeacherPosition position, string lastname, string firstname);

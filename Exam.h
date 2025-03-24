@@ -20,10 +20,8 @@ public :
 	Exam();
 	~Exam();
 	void SetExam(string name, string dateStartExam, int hours, int rating);
-	string get(int x);
+	//оцінювання через виключення 
+	void Evaluation(int rating);
+	//string get(int x); -> переробити
 	void Show() override;
-	//update
-
-	
-
 };

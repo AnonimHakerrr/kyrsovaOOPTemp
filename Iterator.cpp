@@ -5,7 +5,7 @@ Iterator::Iterator(Exam* current, Exam* end):current(current),end(end){}
 Exam& Iterator::operator*() const
 {
     if (current == end) {
-        throw  out_of_range("Ітератор не зоні");
+        throw  out_of_range("Ітератор не в зоні");
     }
 	return *current;
 }

@@ -11,16 +11,22 @@ void Menu::setStudent() {
 }
 void  Menu::setStudentExam(int index)
 {
-	Exam x;
-	cin >> x;
-	stud[index].SetRecordBookStudent(x);
+	if (index != -1)
+	{
+		Exam x;
+		cin >> x;
+		stud[index].SetRecordBookStudent(x);
+	}
 }
-void  Menu::ShowStud() {
+void  Menu::ShowStud(int index) {
 	try {
-		for (Student st : stud)
+		if (!stud.empty() && index != -1)
 		{
-			st.Show();
+			stud[index].Show();
+
 		}
+		else
+			cout << "\nСтудентів ще немає";
 	}
 	catch (const runtime_error& e)
 	{
@@ -32,9 +38,99 @@ void  Menu::ShowListStud()
 {
 	try
 	{
+		if (!stud.empty())
+		{
+			for (Student st : stud)
+			{
+				cout << st.GetStudent();
+			}
+		}
+		else
+			throw runtime_error("\nСтудента не знайдено !");
+	}
+	catch (const runtime_error& e)
+	{
+		cout << e.what();
+
+	}
+}
+int  Menu::SheachStudent()
+{
+	try
+	{
+		if (!stud.empty())
+		{
+			Student seachStud;
+			cin >> seachStud;
+			/*for (Student st : stud)
+			{
+				if (seachStud == st)
+					st.Show();
+
+			}*/
+
+			auto it = find(stud.begin(), stud.end(), seachStud);
+			if (it != stud.end()) {
+				int index = distance(stud.begin(), it);
+
+				return index;
+			}
+			else
+				throw runtime_error("\nСтудента не знайдено !");
+		}
+	}
+	catch (const runtime_error& e)
+	{
+		cout << e.what();
+		return -1;
+	}
+}
+void Menu::SeachExam()
+{
+	if (!stud.empty())
+	{
+		string str;
+		cout << "Ведіть назву екзамену: ";
+		cin >> str;
 		for (Student st : stud)
 		{
-			st.GetStudent();
+			RecordBook rec = st.getRecordBookStudent();
+			Iterator begin(rec.begin(), rec.end());
+			Iterator end(rec.end(), rec.end());
+			for (Iterator it = begin; it != end; ++it) {
+				if ((*it).getNameExam() == str)
+					cout << st.GetStudent();
+
+			}
+		}
+	}
+	else
+		cout << "\nСтудентів ще немає";
+}
+int Menu::showMiddelRating(int index)
+{
+	try {
+		if (index != -1) {
+			float averageScore = 0;
+			int count = 0;
+
+			RecordBook rec = stud[index].getRecordBookStudent();
+			Iterator begin(rec.begin(), rec.end());
+			Iterator end(rec.end(), rec.end());
+			for (Iterator it = begin; it != end; ++it) {
+
+				averageScore += (*it).getRating();
+				count++;
+			}
+
+			averageScore /= count;
+			cout << "\nСередній бал струдента -> " << averageScore << endl;
+			return averageScore;
+		}
+		else
+		{
+			return 0;
+			throw runtime_error("\nСтудента не знайдено !");
 		}
 	}
 	catch (const runtime_error& e)
@@ -42,40 +138,124 @@ void  Menu::ShowListStud()
 		cout << e.what();
 	}
 }
-int  Menu::SheachStudent()
-{
-	Student seachStud;
-	cin >> seachStud;
-	/*for (Student st : stud)
-	{
-		if (seachStud == st)
-			st.Show();
 
-	}*/
-
-	auto it = find(stud.begin(), stud.end(), seachStud);
-	if (it != stud.end()) {
-		int index = distance(stud.begin(), it);
-		it->Show();
-		return index;
-	}
-	else
-		throw runtime_error("Студента не знайдено у векторі!");
-}
-void Menu::SeachExam()
+void Menu::showStudentListAverage()
 {
-	string str;
-	cout << "Ведіть назву екзамену: ";
-	cin >> str;
-	for (Student st : stud)
+	try
 	{
-		RecordBook rec = st.getRecordBookStudent();
-		Iterator begin(rec.begin(), rec.end());
-		Iterator end(rec.end(), rec.end());
-		for (Iterator it = begin; it != end; ++it) {
-			if ((*it).getNameExam().compare(str))
-				st.GetStudent();
+		if (!stud.empty())
+		{
+			vector<int> index(stud.size());
+
+
+			for (int i = 0; i < index.size(); i++) {
+				index[i] = i;
+			}
+
+			sort(index.begin(), index.end(), [this](const int a, const  int b) {
+				system("cls");
+				return showMiddelRating(a) > showMiddelRating(b);
+				});
+
+			for (int i : index)
+			{
+				cout << stud[i].GetStudent();
+				showMiddelRating(i);
+			}
 
 		}
+		else
+			throw runtime_error("\nСтудента не знайдено  !");
+
+	}
+	catch (const runtime_error& e)
+	{
+		cout << e.what();
+	}
+}
+
+
+void Menu::showStudentRatingExam()
+{
+	try {
+		if (!stud.empty())
+		{
+			vector<Student> newStud;
+			string str;
+			int index=0;
+			cout << "Ведіть назву екзамену: ";
+			cin >> str;
+			for (Student st : stud)
+			{
+				RecordBook rec = st.getRecordBookStudent();
+				Iterator begin(rec.begin(), rec.end());
+				Iterator end(rec.end(), rec.end());
+				for (Iterator it = begin; it != end; ++it) {
+					if ((*it).getNameExam() == str)
+					{
+						newStud.push_back(st);
+						break;
+					}
+					index++;
+
+				}
+			}
+			sort(newStud.begin(), newStud.end(), [this,index]( Student& a,   Student& b) {
+				return a.getRecordBookStudent().GetExamIndex(index).getRating() > b.getRecordBookStudent().GetExamIndex(index).getRating();
+				});
+			for (auto st : newStud)
+			{
+				cout << st.GetStudent();
+			}
+		}
+		else
+			throw runtime_error("\nСтудента не знайдено !");
+
+	}
+	catch (const runtime_error& e)
+	{
+		cout << e.what();
+	}
+}
+
+
+void Menu::AddratingExamStudent(int index)
+{
+	try {
+		if (!stud.empty())
+		{
+			int x = 0;
+			string str;
+			cout << "Ведіть назву екзамену: ";
+			cin >> str;
+			 
+				RecordBook rec = stud[index].getRecordBookStudent();
+				Iterator begin(rec.begin(), rec.end());
+				Iterator end(rec.end(), rec.end());
+				for (Iterator it = begin; it != end; ++it) {
+					if ((*it).getNameExam() == str)
+					{
+						int newRating;
+						cout << "\nВведіть оцінку\n";
+						cin >> newRating;
+						(*it).Evaluation((*it), newRating);
+						stud[index].SetRecordBookStudent((*it));
+						stud[index].deleteExam(x);
+						break;
+					}
+					x++;
+					
+
+				}
+			
+			
+		}
+		else
+			throw runtime_error("\nСтудента не знайдено !");
+
+	}
+	catch (const runtime_error& e)
+	{
+		cout << e.what();
 	}
 }

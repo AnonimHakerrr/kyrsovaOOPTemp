@@ -19,6 +19,7 @@ public:
  	void SetRecordBookStudent(Exam exam);
 	RecordBook getRecordBookStudent();
 	void Show() override;
+	void deleteExam(int index);
 	Student& operator=(const Student& other);
 	Student& operator=(Student&& other);
     bool operator==(const Student& st) ;

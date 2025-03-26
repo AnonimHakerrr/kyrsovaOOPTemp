@@ -29,7 +29,7 @@ void Student::SetStudent(string nomerGrup, string lastname, string firstname)
 }
 string Student::GetStudent() {
     
-    return "\nГрупа " + nomerGrup + " \nСтудент :\n"+GetPerson();
+    return "\nГрупа " + nomerGrup + " \nСтудент :\n"+GetPerson()+"\n";
 }
 void Student::SetRecordBookStudent(Exam exam ) {
     recordBook->Add(exam);
@@ -46,6 +46,11 @@ void Student::Show() {
     for (Iterator it = begin; it != end; ++it) {
         (*it).Show();
     }
+
+}
+void Student::deleteExam(int index)
+{
+    recordBook->Delete(index);
 
 }
 Student& Student::operator=(const Student& other) {

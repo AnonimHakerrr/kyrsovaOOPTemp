@@ -13,6 +13,15 @@ void RecordBook::resize()
 	delete[] exam;
 	exam = newExam;
 }
+RecordBook::RecordBook(const RecordBook& other) {
+	size = other.size;
+	maxSize = other.maxSize;
+	exam = new Exam[maxSize];   
+
+	for (int i = 0; i < size; i++) {
+		exam[i] = other.exam[i];
+	}
+}
 RecordBook::RecordBook(int maxSize = 3) :maxSize(maxSize) { exam = new Exam[maxSize]; }
 RecordBook::~RecordBook() { delete[] exam; }
 int RecordBook::GetSize() {
@@ -21,10 +30,16 @@ int RecordBook::GetSize() {
 
 Exam& RecordBook::GetExamIndex(int index)
 {
-	if (index < 0 || index >= size) {
-		throw out_of_range("За таким індексом нічого не знайдено");
+	try {
+		if (index < 0 || index >= size) {
+			throw out_of_range("За таким індексом нічого не знайдено");
+		}
+		return exam[index];
 	}
-	return exam[index];
+	catch(out_of_range e)
+	{
+		cout << e.what();
+	}
 }
 void RecordBook::Add(Exam exam)
 {
@@ -38,17 +53,47 @@ void RecordBook::Add(Exam exam)
 void RecordBook::Delete(int index)
 {
 	Exam* newExam = new Exam[size - 1];
+	int j = 0;
 	for (int  i = 0; i < size; i++)
 	{
-		if((index-1)!=i)
+		if(index!=i)
 		{
-			newExam[i] = exam[i];
+			newExam[j]=exam[i];
+			j++;
 		}
 	}
 	delete[] exam;
-	exam = newExam;
-    --size;
+	this->exam = newExam;
+    --this->size;
  
 }
+RecordBook& RecordBook::operator=(const RecordBook& other) {
+	if (this != &other) {
+		delete[] exam;  
+		size = other.size;
+		maxSize = other.maxSize;
+		exam = new Exam[maxSize];
+
+		for (int i = 0; i < size; i++) {
+			exam[i] = other.exam[i];
+		}
+	}
+	return *this;
+}
+RecordBook& RecordBook::operator=(RecordBook&& other) noexcept {
+	if (this != &other) {
+		delete[] exam;   
+		size = other.size;
+		maxSize = other.maxSize;
+		exam = other.exam;
+
+		other.exam = nullptr;
+		other.size = 0;
+		other.maxSize = 0;
+	}
+	return *this;
+}
+
+
 Exam* RecordBook::begin() const { return exam; }
 Exam* RecordBook::end() const { return exam + size; }

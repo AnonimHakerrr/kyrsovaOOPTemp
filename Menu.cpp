@@ -1,5 +1,5 @@
 #include "Menu.h"
-#include "Iterator.h"
+
 
 
 
@@ -18,6 +18,55 @@ void  Menu::setStudentExam(int index)
 		stud[index].SetRecordBookStudent(x);
 	}
 }
+void Menu::deleteStudent(int index)
+{
+	try {
+		if (!stud.empty() && index != -1)
+			stud.erase(stud.begin() + index);
+		else
+			throw runtime_error("\nСтудента не знайдено !");
+
+	}
+	catch (const runtime_error& e)
+	{
+		cout << e.what();
+	}
+}
+
+void Menu::deleteStudentExam(int index)
+{
+	try {
+		if (!stud.empty() && index != -1)
+		{
+			int x = 0;
+			string str;
+			cout << "Ведіть назву екзамену: ";
+			cin >> str;
+
+			RecordBook rec = stud[index].getRecordBookStudent();
+			Iterator begin(rec.begin(), rec.end());
+			Iterator end(rec.end(), rec.end());
+			for (Iterator it = begin; it != end; ++it) {
+				if ((*it).getNameExam() == str)
+				{
+
+					stud[index].deleteExam(x);
+					break;
+				}
+				x++;
+			}
+			throw runtime_error("\nЕкзамена не знайдено !");
+		}
+		else
+			throw runtime_error("\nСтудента не знайдено !");
+
+	}
+	catch (const runtime_error& e)
+	{
+		cout << e.what();
+	}
+}
+
 void  Menu::ShowStud(int index) {
 	try {
 		if (!stud.empty() && index != -1)
@@ -110,22 +159,30 @@ void Menu::SeachExam()
 int Menu::showMiddelRating(int index)
 {
 	try {
-		if (index != -1) {
+		if (!stud.empty() && index != -1)
+		{
 			float averageScore = 0;
 			int count = 0;
 
 			RecordBook rec = stud[index].getRecordBookStudent();
-			Iterator begin(rec.begin(), rec.end());
-			Iterator end(rec.end(), rec.end());
-			for (Iterator it = begin; it != end; ++it) {
+			if (rec.GetSize()!=0) {
+				Iterator begin(rec.begin(), rec.end());
+				Iterator end(rec.end(), rec.end());
+				for (Iterator it = begin; it != end; ++it) {
 
-				averageScore += (*it).getRating();
-				count++;
+					averageScore += (*it).getRating();
+					count++;
+				}
+
+				averageScore /= count;
+				cout << "\nСередній бал струдента -> " << averageScore << endl;
+				return averageScore;
 			}
-
-			averageScore /= count;
-			cout << "\nСередній бал струдента -> " << averageScore << endl;
-			return averageScore;
+			else
+			{
+				return 0;
+				throw runtime_error("\nСтудента не знайдено екаменів !");
+			}
 		}
 		else
 		{
@@ -182,7 +239,7 @@ void Menu::showStudentRatingExam()
 		{
 			vector<Student> newStud;
 			string str;
-			int index=0;
+			int index = 0;
 			cout << "Ведіть назву екзамену: ";
 			cin >> str;
 			for (Student st : stud)
@@ -200,7 +257,7 @@ void Menu::showStudentRatingExam()
 
 				}
 			}
-			sort(newStud.begin(), newStud.end(), [this,index]( Student& a,   Student& b) {
+			sort(newStud.begin(), newStud.end(), [this, index](Student& a, Student& b) {
 				return a.getRecordBookStudent().GetExamIndex(index).getRating() > b.getRecordBookStudent().GetExamIndex(index).getRating();
 				});
 			for (auto st : newStud)
@@ -222,33 +279,33 @@ void Menu::showStudentRatingExam()
 void Menu::AddratingExamStudent(int index)
 {
 	try {
-		if (!stud.empty())
+		if (!stud.empty() && index != -1)
 		{
 			int x = 0;
 			string str;
 			cout << "Ведіть назву екзамену: ";
 			cin >> str;
-			 
-				RecordBook rec = stud[index].getRecordBookStudent();
-				Iterator begin(rec.begin(), rec.end());
-				Iterator end(rec.end(), rec.end());
-				for (Iterator it = begin; it != end; ++it) {
-					if ((*it).getNameExam() == str)
-					{
-						int newRating;
-						cout << "\nВведіть оцінку\n";
-						cin >> newRating;
-						(*it).Evaluation((*it), newRating);
-						stud[index].SetRecordBookStudent((*it));
-						stud[index].deleteExam(x);
-						break;
-					}
-					x++;
-					
 
+			RecordBook rec = stud[index].getRecordBookStudent();
+			Iterator begin(rec.begin(), rec.end());
+			Iterator end(rec.end(), rec.end());
+			for (Iterator it = begin; it != end; ++it) {
+				if ((*it).getNameExam() == str)
+				{
+					int newRating;
+					cout << "\nВведіть оцінку\n";
+					cin >> newRating;
+					(*it).Evaluation((*it), newRating);
+					stud[index].SetRecordBookStudent((*it));
+					stud[index].deleteExam(x);
+					break;
 				}
-			
-			
+				x++;
+
+
+			}
+
+
 		}
 		else
 			throw runtime_error("\nСтудента не знайдено !");
@@ -258,4 +315,50 @@ void Menu::AddratingExamStudent(int index)
 	{
 		cout << e.what();
 	}
+}
+
+void Menu::setListStudents(vector<Student>& st)
+{
+	try
+	{
+		if (!st.empty())
+		{
+			for (auto s:st)
+			{
+				if (find(stud.begin(), stud.end(), s) == stud.end()) {
+					stud.push_back(s);
+				}
+			}
+		}
+		else
+			throw runtime_error("\nСтудентів не знайдено !");
+
+	}
+	catch (const runtime_error& e)
+	{
+		cout << e.what();
+	}
+}
+
+void Menu::WriteFileStudens(File& f)
+{
+
+
+	try
+	{
+		if (!stud.empty())
+		{
+			
+			f.WriteFile(stud);
+
+		}
+		else
+			throw runtime_error("\nСтудентів не знайдено !");
+
+	}
+	catch (const runtime_error& e)
+	{
+		cout << e.what();
+	}
+
 }

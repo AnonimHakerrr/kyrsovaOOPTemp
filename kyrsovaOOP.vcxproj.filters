@@ -17,6 +17,7 @@
   <ItemGroup>
     <Text Include="Task.txt" />
     <Text Include="TaskUpdate.txt" />
+    <Text Include="ListStudentAndExam.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">

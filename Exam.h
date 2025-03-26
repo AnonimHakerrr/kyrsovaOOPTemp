@@ -22,10 +22,12 @@ public :
 	Exam();
 	~Exam();
 	void SetExam(string name, string dateStartExam, int hours, int rating);
-	static bool Evaluation(Exam& exam,int rating);
+	static void Evaluation(Exam& exam,int rating);
 	int getRating();
 	string getNameExam();
 	void Show() override;
 	static bool getValidNumber(istream& is, int& value);
+	string GetInfoExam();
+
 	friend istream& operator>>(istream& is, Exam& ex);
 };

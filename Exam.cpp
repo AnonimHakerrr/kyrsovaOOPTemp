@@ -30,12 +30,12 @@ Exam::Exam( const Teacher& t, string name, string dateStartExam, int hours, int 
 Exam::Exam() {}
 Exam::~Exam() {}
 
-bool Exam::Evaluation(Exam& exam,int rating){
+void Exam::Evaluation(Exam& exam,int rating){
 	try {
 		if (rating >= 0 && rating <= 100)
 		{
 			exam.rating = rating; 
-			return true;
+			
 		}
 		else
 		{
@@ -44,8 +44,7 @@ bool Exam::Evaluation(Exam& exam,int rating){
 	}catch(invalid_argument e)
 	{
 		cout << e.what();
-		return false;
-	}
+ 	}
 }
 void Exam::SetExam(string name, string dateStartExam, int hours, int rating=0)
 {
@@ -84,7 +83,7 @@ string Exam::getNameExam()
 //}
 void Exam::Show()
 {
-	cout << "\nНазва предмету " + name + "\nДата проведення " + dateStartExam + "\nКількість годин на предмет " + to_string(hours) + "\nОцінка " + to_string(rating) << "\n"   << GetTeacher() << endl;
+	cout << GetInfoExam();
 }
 
 bool Exam::getValidNumber(istream& is, int& value) {
@@ -94,7 +93,16 @@ bool Exam::getValidNumber(istream& is, int& value) {
 	return (ss >> value) && ss.eof();
 }
 
+string Exam::GetInfoExam()
+{
+	return ( "\nНазва предмету : " + name +
+		"\nДата проведення : " + dateStartExam + 
+		"\nКількість годин на предмет : " + to_string(hours) + 
+		"\nОцінка : " + to_string(rating) +
+		"\n"+ GetTeacher());
+}
  
+
 istream& operator>>(istream& is, Exam& ex)
 {
 	cout << "Ведіть назву предмета :";
@@ -107,7 +115,7 @@ istream& operator>>(istream& is, Exam& ex)
 		cout << "\nПомилка! Введіть число: ";
 	}
 	cout << "Ведіть кількість балів :";
-	while (!Exam::getValidNumber(is, ex.rating)&&Exam::Evaluation(ex,ex.rating)) {
+	while (!Exam::getValidNumber(is, ex.rating)&& (ex.rating >= 0 && ex.rating <= 100)) {
 		cout << "\nПомилка! Введіть число: ";
 	}
 	is >> static_cast<Teacher&>(ex);

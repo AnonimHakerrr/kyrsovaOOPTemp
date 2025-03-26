@@ -1,25 +1,31 @@
 #include <iostream>
- #include <locale>
+#include <locale>
+#include <windows.h>
 #include "Menu.h"
 #include <conio.h> 
+#include "File.h"
 using namespace  std;
  
 void showMenu(int selected) {
     system("cls"); // Очищення консолі
     string menuItems[] = {
-        "Додавання Студента",
-        "Вивід списку студентів ",
-        "Вивід струдентів по екзамену ",
-        "Вивід екзаменів студента",
-        "Вивід середній бал студента",
-        "Сортування по сердньому балі",
-        "Додавання екзамену для студента",
-        "Сортування студентів по оцінці екзамену",
-        "Зміна оцінки студента за екзамен",
+		"Додавання Студента",
+		"Видалення студента",
+        "Видалення екзамену студента",
+		"Додавання екзамену для студента",
+		"Зміна оцінки студента за екзамен",
+		"Вивід списку студентів ",
+		"Вивід струдентів по екзамену ",
+		"Вивід екзаменів студента",
+		"Вивід середній бал студента",
+		"Сортування по сердньому балі",
+		"Сортування студентів по оцінці екзамену",
+        "Читання з файлу",
+        "Запис у файл",
         "Вихід"};
 
     cout << "Виберіть пункт меню:\n";
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 14; ++i) {
         if (i == selected)
             cout << " -> ";
         else
@@ -30,8 +36,9 @@ void showMenu(int selected) {
 }
 
 int main() {
-	setlocale(LC_CTYPE, "ukr");
-	Menu menu;
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);  
+    Menu menu;
     int selected = 0;
     char key;
 
@@ -44,7 +51,7 @@ int main() {
             if (selected > 0) selected--;
             break;
         case 80:
-            if (selected < 9) selected++;
+            if (selected < 13) selected++;
             break;
         case 13: 
         {
@@ -54,35 +61,55 @@ int main() {
                 menu.setStudent();
                 break;
             case 1:
-                menu.ShowListStud();
+                menu.deleteStudent(menu.SheachStudent());
                 break;
             case 2:
-                menu.SeachExam();
+                menu.deleteStudentExam(menu.SheachStudent());
                 break;
             case 3:
-                menu.ShowStud(menu.SheachStudent());
-                break;
-            case 4:
-                menu.showMiddelRating(menu.SheachStudent());
-                break;
-            case 5 :
-                menu.showStudentListAverage();
-                break;
-            case 6:
                 menu.setStudentExam(menu.SheachStudent());
                 break;
-            case 7:
-                menu.showStudentRatingExam();
-                break;
-            case 8:
+            case 4:
                 menu.AddratingExamStudent(menu.SheachStudent());
                 break;
+            case 5:
+                menu.ShowListStud();
+                break;
+            case 6:
+                menu.SeachExam();
+                break;
+            case 7:
+                menu.ShowStud(menu.SheachStudent());
+                break;
+            case 8:
+                menu.showMiddelRating(menu.SheachStudent());
+                break;
+            case 9 :
+                menu.showStudentListAverage();
+                break;
+          
+            case 10:
+                menu.showStudentRatingExam();
+                break;
+            case 11:
+            {
+                File f("ListStudentAndExam.txt");
+                vector<Student> s = f.ReadFile();
+                menu.setListStudents(s);
+                break;
+            }
+            case 12:
+            {
+                File f("ListStudentAndExam.txt");
+                 menu.WriteFileStudens(f);
+                 break;
+            }
             default:
                 break;
             }
             
             
-            if (selected == 9) {
+            if (selected == 13) {
                 cout << "Вихід...\n";
                 return 0;
             }

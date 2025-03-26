@@ -21,7 +21,7 @@ void Teacher::SetTeacher(TeacherPosition position, string lastname, string first
 
 }
 string Teacher::GetTeacher() {
-    return "\nПосада " +  positionToString(position) + " \nВикладач :\n" + GetPerson();
+    return "\nПосада : " +  positionToString(position) + GetPerson();
 }
 
 void Teacher::Show() {

@@ -12,11 +12,11 @@ void Person::SetPerson(string lastname, string firstname)
     this->lastname = lastname;
 }
 string Person::GetPerson() {
-    return "Прізвище: " + lastname + ", Ім'я: " + firstname;
+    return "\nПрізвище : " + lastname + "  Ім'я : " + firstname;
 }
 
 void Person::Show() {
-    cout << "Прізвище: " << lastname << ", Ім'я: " << firstname << endl;
+    cout << "\nПрізвище: " << lastname << "Ім'я: " << firstname << endl;
 }
 bool Person::operator ==(const Person& other)
 {
@@ -24,7 +24,7 @@ bool Person::operator ==(const Person& other)
 
 }
 ostream& operator<<(ostream& os, const Person& person) {
-    os << "Прізвище: " << person.lastname << ", Ім'я: " << person.firstname;
+    os << "\nПрізвище: " << person.lastname << "Ім'я: " << person.firstname;
     return os;
 }
 

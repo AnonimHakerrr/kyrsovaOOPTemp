@@ -9,7 +9,7 @@ private :
 	string nomerGrup;
 	RecordBook* recordBook  ;
 public: 
-	Student(string nomerGrup, string lastname, string firstname,int maxsize);
+	Student(string nomerGrup, string lastname, string firstname);
 	Student(const Student& other);
 	Student(Student&& other);
 	Student();

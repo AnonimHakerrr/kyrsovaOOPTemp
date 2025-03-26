@@ -1,5 +1,7 @@
 #pragma once
 #include "Student.h"
+#include "Iterator.h"
+#include "File.h"
 #include "iostream"
 #include <vector>
 #include <algorithm>
@@ -10,20 +12,17 @@ class Menu
 public:
 	void setStudent();
 	void setStudentExam(int index);
+	void deleteStudent(int index);
+	void deleteStudentExam(int index);
 	void ShowStud(int index);
 	void ShowListStud();
 	int SheachStudent();
 	void SeachExam();
-	/*
-	+ вивід середнього значення оцінки студента
-	-- сортування по сердньому балі
-	-- сортування струдентві по оцінці з екзамену
-	-- додавання оцінки 
-*/
 	int showMiddelRating(int index);
 	void showStudentListAverage();
 	void showStudentRatingExam();
 	void AddratingExamStudent(int index);
-
+	void setListStudents(vector<Student>& st );
+	void WriteFileStudens(File& f);
 };
 

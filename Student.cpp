@@ -4,7 +4,7 @@
 #include "Iterator.h"
 
 using namespace std;
-Student::Student(string nomerGrup, string lastname, string firstname, int maxsize):Person(lastname, firstname) 
+Student::Student(string nomerGrup, string lastname, string firstname ):Person(lastname, firstname) 
 { 
 this->recordBook = new RecordBook(5); 
 this->nomerGrup = nomerGrup; 
@@ -29,7 +29,7 @@ void Student::SetStudent(string nomerGrup, string lastname, string firstname)
 }
 string Student::GetStudent() {
     
-    return "\nГрупа " + nomerGrup + " \nСтудент :\n"+GetPerson()+"\n";
+    return "\nCтудент Групи : " + nomerGrup +GetPerson()+"\n";
 }
 void Student::SetRecordBookStudent(Exam exam ) {
     recordBook->Add(exam);
@@ -40,7 +40,7 @@ RecordBook Student::getRecordBookStudent()
 }
 void Student::Show() {
     
-    cout << "Номер групи "<<nomerGrup <<" \nСтудент :\n"<< GetPerson() << endl;
+    cout << "Cтудент Групи :"+nomerGrup +GetPerson() << endl;
     Iterator begin(recordBook->begin(), recordBook->end());
     Iterator end(recordBook->end(), recordBook->end());
     for (Iterator it = begin; it != end; ++it) {

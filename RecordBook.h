@@ -13,10 +13,10 @@ public:
 	RecordBook(const RecordBook& other);
 	RecordBook(int maxSize);
 	~RecordBook();
-	int GetSize();
-	Exam& GetExamIndex(int index);
-	void Add(Exam exam);
-	void Delete(int index);
+	int getSize();
+	Exam& getExamIndex(int index);
+	void add(Exam exam);
+	void deleteExam(int index);
 	RecordBook& operator=(const RecordBook& other);
 	RecordBook& operator=(RecordBook&& other) noexcept;
 	Exam* begin() const;

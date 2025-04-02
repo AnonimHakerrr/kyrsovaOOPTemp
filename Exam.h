@@ -7,27 +7,22 @@
 #include <limits>
  
 using namespace std; 
-class Exam :public Teacher
-{
+class Exam :public Teacher{
 private:
 	string name, dateStartExam;
 	int hours=0, rating=0;
- 
-	
 public :
-
 	Exam(string name, string dateStartExam, int hours, int rating);
 	Exam(const Teacher& t,string name, string dateStartExam, int hours, int rating);
 	Exam (TeacherPosition position, string lastname,string firstname ,string name, string dateStartExam, int hours, int rating);
 	Exam();
 	~Exam();
-	void SetExam(string name, string dateStartExam, int hours, int rating);
-	static void Evaluation(Exam& exam,int rating);
+	void setExam(string name, string dateStartExam, int hours, int rating);
+	static void evaluation(Exam& exam,int rating);
 	int getRating();
 	string getNameExam();
-	void Show() override;
+	void show() override;
 	static bool getValidNumber(istream& is, int& value);
-	string GetInfoExam();
-
+	string getInfoExam();
 	friend istream& operator>>(istream& is, Exam& ex);
 };

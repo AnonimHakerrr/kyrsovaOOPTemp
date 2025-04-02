@@ -12,9 +12,9 @@ public:
 	Teacher(Teacher&& other);
 	 Teacher();
 	virtual ~Teacher();
-	void SetTeacher(TeacherPosition position, string lastname, string firstname);
-	string GetTeacher();
-	void Show() override;
+	void setTeacher(TeacherPosition position, string lastname, string firstname);
+	string getTeacher();
+	void show() override;
 	Teacher& operator=(const Teacher& other);
 	Teacher& operator=(Teacher&& other);
 

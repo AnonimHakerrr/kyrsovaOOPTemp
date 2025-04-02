@@ -14,11 +14,11 @@ public:
 	Student(Student&& other);
 	Student();
 	virtual ~Student();
-	void SetStudent(string nomerGrup, string lastname, string firstname);
-	string GetStudent();
- 	void SetRecordBookStudent(Exam exam);
+	void setStudent(string nomerGrup, string lastname, string firstname);
+	string getStudent();
+ 	void setRecordBookStudent(Exam exam);
 	RecordBook getRecordBookStudent();
-	void Show() override;
+	void show() override;
 	void deleteExam(int index);
 	Student& operator=(const Student& other);
 	Student& operator=(Student&& other);

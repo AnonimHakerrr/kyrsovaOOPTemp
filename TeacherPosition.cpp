@@ -1,36 +1,32 @@
 #include "TeacherPosition.h"
 #include <map>
 
-
-string  positionToString(TeacherPosition techpos) 
-{//Асистент  старший викладач доцент Професор
+string  positionToString(TeacherPosition techpos){
 	switch (techpos)
-	{	
+	{
 	case TeacherPosition::Assistant:
 		return "Асистент";
 	case TeacherPosition::Lecturer:
 		return "Викладач";
- 	case TeacherPosition::SeniorLecturer:
+	case TeacherPosition::SeniorLecturer:
 		return "Старший викладач";
 	case TeacherPosition::Docent:
 		return "Доцент";
 	case TeacherPosition::Professor:
 		return "Професор";
- 	default:
+	default:
 		return "Асистент";
-
 	}
 }
-TeacherPosition positionToEnum(string techpos)
-{
+
+TeacherPosition positionToEnum(string techpos){
 	map<string, TeacherPosition> position = {
-		{"Assistant",TeacherPosition::Assistant},
-		{"Lecturer",TeacherPosition::Lecturer},
-		{"SeniorLecturer",TeacherPosition::SeniorLecturer} ,
-		{"Docent", TeacherPosition::Docent},
-		{"Professor",TeacherPosition::Professor},
+		{"Асистент",TeacherPosition::Assistant},
+		{"Викладач",TeacherPosition::Lecturer},
+		{"Старший викладач",TeacherPosition::SeniorLecturer} ,
+		{"Доцент", TeacherPosition::Docent},
+		{"Професор",TeacherPosition::Professor},
 	};
 	auto pos = position.find(techpos);
-
-return (pos!=position.end()) ? pos->second : TeacherPosition::Assistant;
+	return (pos != position.end()) ? pos->second : TeacherPosition::Assistant;
 }

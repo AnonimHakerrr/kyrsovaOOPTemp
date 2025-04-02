@@ -6,23 +6,22 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-class Menu
-{
+class Menu{
 	vector<Student> stud;
 public:
 	void setStudent();
 	void setStudentExam(int index);
 	void deleteStudent(int index);
 	void deleteStudentExam(int index);
-	void ShowStud(int index);
-	void ShowListStud();
-	int SheachStudent();
-	void SeachExam();
+	void showStud(int index);
+	void showListStud();
+	int sheachStudent();
+	void seachExam();
 	int showMiddelRating(int index);
 	void showStudentListAverage();
 	void showStudentRatingExam();
-	void AddratingExamStudent(int index);
+	void addratingExamStudent(int index);
 	void setListStudents(vector<Student>& st );
-	void WriteFileStudens(File& f);
+	void writeFileStudens(File& f);
 };
 

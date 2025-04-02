@@ -61,28 +61,28 @@ int main() {
                 menu.setStudent();
                 break;
             case 1:
-                menu.deleteStudent(menu.SheachStudent());
+                menu.deleteStudent(menu.sheachStudent());
                 break;
             case 2:
-                menu.deleteStudentExam(menu.SheachStudent());
+                menu.deleteStudentExam(menu.sheachStudent());
                 break;
             case 3:
-                menu.setStudentExam(menu.SheachStudent());
+                menu.setStudentExam(menu.sheachStudent());
                 break;
             case 4:
-                menu.AddratingExamStudent(menu.SheachStudent());
+                menu.addratingExamStudent(menu.sheachStudent());
                 break;
             case 5:
-                menu.ShowListStud();
+                menu.showListStud();
                 break;
             case 6:
-                menu.SeachExam();
+                menu.seachExam();
                 break;
             case 7:
-                menu.ShowStud(menu.SheachStudent());
+                menu.showStud(menu.sheachStudent());
                 break;
             case 8:
-                menu.showMiddelRating(menu.SheachStudent());
+                menu.showMiddelRating(menu.sheachStudent());
                 break;
             case 9 :
                 menu.showStudentListAverage();
@@ -94,14 +94,14 @@ int main() {
             case 11:
             {
                 File f("ListStudentAndExam.txt");
-                vector<Student> s = f.ReadFile();
+                vector<Student> s = f.readFile();
                 menu.setListStudents(s);
                 break;
             }
             case 12:
             {
                 File f("ListStudentAndExam.txt");
-                 menu.WriteFileStudens(f);
+                 menu.writeFileStudens(f);
                  break;
             }
             default:

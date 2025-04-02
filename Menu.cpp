@@ -80,6 +80,9 @@ int  Menu::sheachStudent()
 			int index = distance(stud.begin(), it);
 			return index;
 		}
+		throw runtime_error("\nСтудента не знайдено !");
+
+
 	}
 	catch (const runtime_error& e) {
 		cout << e.what();

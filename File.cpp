@@ -24,7 +24,7 @@ vector<Student> File::readFile() {
 	}
 	for (auto l : lines) {
 		Student stud(l[0], l[1], l[2]);
-		for (size_t i = 3; i < l.size(); i += 8) {
+		for (size_t i = 3; i < l.size(); i += 7) {
 			Teacher teach(positionToEnum(l[i + 4]), l[i + 5], l[i + 6]);
 			Exam exam(teach, l[i], l[i + 1], stoi(l[i + 2]), stoi(l[i + 3]));
 			stud.setRecordBookStudent(exam);
@@ -73,7 +73,7 @@ vector<string> File::split(const string& str, char delimiter) {
 			tokens.push_back(token);
 		}
 	}
-	unordered_set<string> stopWords = { ":", "Cтудент","Прізвище", "Групи", "Ім'я", "Назва", "предмету", "Кількість",
+	unordered_set<string> stopWords = { ":", "Cтудент","Прізвище", "Групи", "Ім'я", "Назва", "предмету","предмет", "Кількість",
 										 "годин", "на", "проведення", "Оцінка", "Посада", "Дата" };
 
 	tokens.erase(remove_if(tokens.begin(), tokens.end(),

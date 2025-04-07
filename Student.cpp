@@ -38,10 +38,15 @@ RecordBook Student::getRecordBookStudent() {
 
 void Student::show() {
 	cout << "\nCтудент √рупи :" + nomerGrup + getPerson() << endl;
-	Iterator begin(recordBook->begin(), recordBook->end());
-	Iterator end(recordBook->end(), recordBook->end());
-	for (Iterator it = begin; it != end; ++it) {
-		(*it).show();
+	if (recordBook->getSize() != 0) {
+		Iterator begin(recordBook->begin(), recordBook->end());
+		Iterator end(recordBook->end(), recordBook->end());
+		for (Iterator it = begin; it != end; ++it) {
+			(*it).show();
+		}
+	}
+	else {
+		cout << "\n≈кзамен≥в не знайдено!" << endl;
 	}
 }
 

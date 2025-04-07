@@ -1,14 +1,15 @@
 #pragma once
- 
-#include "Teacher.h"
- #include <iostream>
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <limits>
+#include "Teacher.h"
+#include "TeacherPosition.h"
  
 using namespace std; 
-class Exam :public Teacher{
+class Exam {
 private:
+	Teacher tech;
 	string name, dateStartExam;
 	int hours=0, rating=0;
 public :
@@ -21,7 +22,7 @@ public :
 	static void evaluation(Exam& exam,int rating);
 	int getRating();
 	string getNameExam();
-	void show() override;
+	void show();
 	static bool getValidNumber(istream& is, int& value);
 	string getInfoExam();
 	friend istream& operator>>(istream& is, Exam& ex);

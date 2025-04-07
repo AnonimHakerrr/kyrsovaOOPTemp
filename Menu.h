@@ -13,9 +13,10 @@ public:
 	void setStudentExam(int index);
 	void deleteStudent(int index);
 	void deleteStudentExam(int index);
-	void showStud(int index);
+	void showStud(vector<int> index);
 	void showListStud();
 	int sheachStudent();
+	vector<int> sheachStudents();
 	void seachExam();
 	int showMiddelRating(int index);
 	void showStudentListAverage();

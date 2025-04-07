@@ -2,7 +2,7 @@
 #include "Exam.h"
 
 Exam::Exam(string name, string dateStartExam, int hours, int rating) :
-	Teacher::Teacher(),
+	tech(),
 	name(name),
 	dateStartExam(dateStartExam),
 	hours(hours),
@@ -10,14 +10,14 @@ Exam::Exam(string name, string dateStartExam, int hours, int rating) :
 
 Exam::Exam(TeacherPosition position,
 	string lastname, string firstname,
-	string name, string dateStartExam, int hours, int rating) :Teacher::Teacher(position, lastname, firstname),
+	string name, string dateStartExam, int hours, int rating) :tech(position, lastname, firstname),
 	name(name),
 	dateStartExam(dateStartExam),
 	hours(hours),
 	rating(rating) {}
 
 Exam::Exam(const Teacher& t, string name, string dateStartExam, int hours, int rating)
-	:Teacher(t),
+	:tech(t),
 	name(name),
 	dateStartExam(dateStartExam),
 	hours(hours),
@@ -69,7 +69,7 @@ string Exam::getInfoExam() {
 		"\nДата проведення : " + dateStartExam +
 		"\nКількість годин на предмет : " + to_string(hours) +
 		"\nОцінка : " + to_string(rating) +
-		"\n" + getTeacher());
+		"\n" + tech.getTeacher());
 }
 
 istream& operator>>(istream& is, Exam& ex) {
@@ -86,6 +86,6 @@ istream& operator>>(istream& is, Exam& ex) {
 	while (!Exam::getValidNumber(is, ex.rating) && (ex.rating >= 0 && ex.rating <= 100)) {
 		cout << "\nПомилка! Введіть число: ";
 	}
-	is >> static_cast<Teacher&>(ex);
+	is >> ex.tech;
 	return is;
 }

@@ -9,20 +9,20 @@ using namespace  std;
 void showMenu(int selected) {
     system("cls"); // Очищення консолі
     string menuItems[] = {
-		"Додавання Студента",
-		"Видалення студента",
-        "Видалення екзамену студента",
-		"Додавання екзамену для студента",
-		"Зміна оцінки студента за екзамен",
-		"Вивід списку студентів ",
-		"Вивід струдентів по екзамену ",
-		"Вивід екзаменів студента",
-		"Вивід середній бал студента",
-		"Сортування по сердньому балі",
-		"Сортування студентів по оцінці екзамену",
-        "Читання з файлу",
-        "Запис у файл",
-        "Вихід"};
+/*0*/		"Додавання Студента",
+/*1*/	    "Видалення студента",
+/*2*/       "Видалення екзамену студента",
+/*3*/		"Додавання екзамену для студента",
+/*4*/		"Зміна оцінки студента за екзамен",
+/*5*/		"Вивід списку студентів ",
+/*6*/		"Вивід струдентів по екзамену ",
+/*7*/		"Вивід екзаменів студента",
+/*8*/		"Вивід середній бал студента",
+/*9*/		"Сортування по сердньому балу",
+/*10*/		"Сортування студентів по оцінці екзамену",
+/*11*/       "Читання з файлу",
+/*12*/       "Запис у файл",
+/*13*/       "Вихід"};
 
     cout << "Виберіть пункт меню:\n";
     for (int i = 0; i < 14; ++i) {
@@ -38,6 +38,7 @@ void showMenu(int selected) {
 int main() {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);  
+ 
     Menu menu;
     int selected = 0;
     char key;
@@ -79,10 +80,10 @@ int main() {
                 menu.seachExam();
                 break;
             case 7:
-                menu.showStud(menu.sheachStudent());
+                menu.showStud(menu.sheachStudents());
                 break;
             case 8:
-                menu.showMiddelRating(menu.sheachStudent());
+                menu.showMiddelRating(menu.sheachStudents());
                 break;
             case 9 :
                 menu.showStudentListAverage();
@@ -96,12 +97,15 @@ int main() {
                 File f("ListStudentAndExam.txt");
                 vector<Student> s = f.readFile();
                 menu.setListStudents(s);
+                cout << "Файл прочитаний" << endl;
                 break;
             }
             case 12:
             {
                 File f("ListStudentAndExam.txt");
                  menu.writeFileStudens(f);
+                 cout << "Файл записаний" << endl;
+
                  break;
             }
             default:

@@ -83,7 +83,7 @@ int main() {
                 menu.showStud(menu.sheachStudents());
                 break;
             case 8:
-                menu.showMiddelRating(menu.sheachStudents());
+                menu.showMiddelRating(menu.sheachStudent());
                 break;
             case 9 :
                 menu.showStudentListAverage();

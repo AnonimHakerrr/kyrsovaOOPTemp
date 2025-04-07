@@ -6,7 +6,7 @@ void Menu::setStudent() {
 	Student studTemp;
 	cin >> studTemp;
 	stud.push_back(studTemp);
-	cout << "Студента додано" << endl;
+	cout << "\nСтудента додано" << endl;
 }
 void  Menu::setStudentExam(int index) {
 	if (index != -1) {
@@ -14,14 +14,14 @@ void  Menu::setStudentExam(int index) {
 		cin >> x;
 		stud[index].setRecordBookStudent(x);
 
-		cout << "Екзамен додано в залікову книжку студента" << endl;
+		cout << "\nЕкзамен додано в залікову книжку студента" << endl;
 	}
 }
 void Menu::deleteStudent(int index)
 {
 	if (index != -1) {
 		stud.erase(stud.begin() + index);
-		cout << "Студента видалено" << endl;
+		cout << "\nСтудента видалено" << endl;
 	}
 }
 
@@ -38,7 +38,7 @@ void Menu::deleteStudentExam(int index)
 		for (Iterator it = begin; it != end; ++it) {
 			if ((*it).getNameExam() == str) {
 				stud[index].deleteExam(x);
-				cout << "Екамен видалено із залікову книжки студента" << endl;
+				cout << "\nЕкамен видалено із залікову книжки студента" << endl;
 				break;
 			}
 			x++;

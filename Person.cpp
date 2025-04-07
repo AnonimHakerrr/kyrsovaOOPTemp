@@ -13,7 +13,7 @@ void Person::setPerson(string lastname, string firstname) {
 	this->lastname = lastname;
 }
 string Person::getPerson() {
-	return "\nПрізвище : " + lastname + "  Ім'я : " + firstname;
+	return "\nПрізвище : " + lastname + "  Ім'я : " + firstname+"\n";
 }
 
 void Person::show() {
